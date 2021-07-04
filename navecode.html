@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>jogo missao planeta</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+       
+    </style>
+</head>
+<body>
+   
+    <canvas id="tela" width="500" height="500" ></canvas>
+    <script>
+        const tela = document.getElementById('tela')
+        const ctx = tela.getContext('2d')
+        var x = 100
+        var y = 100
+        var asteroidex = 0
+        var asteroidey = 0
+
+
+        document.addEventListener('keydown',teclado)
+        function teclado(event){
+            console.log(event.key)
+            const tecla = event.key
+
+            if ( tecla ==='ArrowUp' && y>=10){
+
+                y-=10
+            }
+            if ( tecla==='ArrowDown'&& y<500-30){
+                y+=10
+            }
+            if ( tecla === 'ArrowRight' &&  x <500-30){
+                x+=10
+            }
+            if (tecla ==='ArrowLeft' && x >= 10){
+                x-=10
+            }
+                
+            
+        }
+
+        function moviasteroid(){
+            asteroidey++
+        }
+
+        roda();
+
+        function roda(){
+            moviasteroid();
+            ctx.fillStyle='white'
+            ctx.fillRect(0,0,500,500)
+
+            ctx.fillStyle = 'gray'
+            ctx.fillRect(asteroidex,asteroidey,20,20)
+           
+
+            ctx.fillStyle= 'red'
+            ctx.fillRect(x,y,30,30)
+            requestAnimationFrame(roda)
+        }
+    </script>
+    
+</body>
+</html>
